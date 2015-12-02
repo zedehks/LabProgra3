@@ -17,7 +17,7 @@ class Playerpawn : public Actor
 
         }
         void logic();
-        double velocity = 1.5, x_vel = 0, y_vel = 0;;
+        double velocity = 2.5, x_vel = 0, y_vel = 0,friction = (velocity/2);
         virtual ~Playerpawn();
     protected:
     private:

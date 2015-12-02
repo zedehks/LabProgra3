@@ -99,6 +99,8 @@ int main( int argc, char* args[] )
         double fps = 1000.0 / (double)SCREEN_TICKS_PER_FRAME-(double)(fLength - currentTime);
         system("cls");
         printf("\n%f",fps);
+        printf("\nx speed: %f",player->x_vel);
+        printf("\ny speed: %f",player->y_vel);
 
     }
 

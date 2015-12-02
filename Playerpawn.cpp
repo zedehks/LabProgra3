@@ -37,17 +37,15 @@ void Playerpawn::logic()
     rect_actor.y+= y_vel;
 
 
-    if(x_vel > 0)
-        x_vel -= velocity/2;
-    else if(x_vel < 0)
-        x_vel += velocity/2;
-    else
-        x_vel = 0;
+    if(x_vel > 0.0)
+        x_vel -= friction;
+    if(x_vel < 0.0)
+        x_vel += friction;
 
-    if(y_vel > 0)
-        y_vel -= velocity/2;
-    else if(y_vel < 0)
-        y_vel += velocity/2;
-    else
-        y_vel = 0;
+
+    if(y_vel > 0.0)
+        y_vel -= friction;
+     if(y_vel < 0.0)
+        y_vel += friction;
+
 }

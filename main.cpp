@@ -1,15 +1,24 @@
 
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
+#include<SDL.h>
+#include<SDL_image.h>
 #include<iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <list>
+
+#include "Actor.h"
+#include "Playerpawn.h"
 
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Event Event;
-SDL_Texture *background,*character;
-SDL_Rect rect_background,rect_character;
+SDL_Texture *background;
+SDL_Rect rect_background;
 
+const int SCREEN_FPS = 60;
+const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
+using namespace std;
 
 int main( int argc, char* args[] )
 {
@@ -37,18 +46,21 @@ int main( int argc, char* args[] )
     SDL_QueryTexture(background, NULL, NULL, &w, &h);
     rect_background.x = 0; rect_background.y = 0; rect_background.w = w; rect_background.h = h;
 
-    character = IMG_LoadTexture(renderer, "personaje.png");
-    SDL_QueryTexture(character, NULL, NULL, &w, &h);
-    rect_character.x = 0; rect_character.y = 100; rect_character.w = w; rect_character.h = h;
+    Actor* chaika = new Actor(renderer,'c',200,32);
+    Playerpawn* player = new Playerpawn(renderer);
 
-    SDL_Texture *chaika = IMG_LoadTexture(renderer, "chaika.png");
-    SDL_QueryTexture(chaika,NULL,NULL,&w,&h);
-    SDL_Rect rect_Chaika;
-    rect_Chaika.x = 100; rect_Chaika.x = 100; rect_Chaika.w = w; rect_Chaika.h = h;
+    list<Actor*>actors;
 
+    actors.push_back(chaika);
+
+
+    //int frame = 0;
+    int fLength = 0;
+    int currentTime = 0;
     //Main Loop
     while(true)
     {
+        currentTime = SDL_GetTicks();
         while(SDL_PollEvent(&Event))
         {
             if(Event.type == SDL_QUIT)
@@ -57,16 +69,45 @@ int main( int argc, char* args[] )
             }
             if(Event.type == SDL_KEYDOWN)
             {
-                if(Event.key.keysym.sym == SDLK_d)
-                    rect_character.x++;
+                switch(Event.key.keysym.sym)
+                {
+                case SDLK_d:
+                    chaika->rect_actor.x++;
+                    break;
+                }
             }
         }
 
         SDL_RenderCopy(renderer, background, NULL, &rect_background);
-        SDL_RenderCopy(renderer, character, NULL, &rect_character);
-        SDL_RenderCopy(renderer,chaika,NULL, &rect_Chaika);
+        player->logic();
+        player->draw();
+        for(list<Actor*>::iterator e = actors.begin();e!=actors.end();e++)
+        {
+            (*e)->logic();
+            (*e)->draw();
+        }
+
+
         SDL_RenderPresent(renderer);
+
+        fLength = SDL_GetTicks();
+        if( (fLength - currentTime) < SCREEN_TICKS_PER_FRAME )
+        {
+            SDL_Delay(SCREEN_TICKS_PER_FRAME - (fLength - currentTime));
+        }
+
+        double fps = 1000.0 / (double)SCREEN_TICKS_PER_FRAME-(double)(fLength - currentTime);
+        system("cls");
+        printf("\n%f",fps);
+
+    }
+
+    free(chaika);
+    for(list<Actor*>::iterator e = actors.begin();e!=actors.end();e++)
+    {
+        free(*e);
     }
 
 	return 0;
 }
+

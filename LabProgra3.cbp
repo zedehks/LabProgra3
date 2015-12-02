@@ -39,6 +39,10 @@
 			<Add directory="C:/SDL2/i686-w64-mingw32/lib" />
 			<Add directory="C:/SDL2/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="Actor.cpp" />
+		<Unit filename="Actor.h" />
+		<Unit filename="Playerpawn.cpp" />
+		<Unit filename="Playerpawn.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

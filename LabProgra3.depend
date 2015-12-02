@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1449078445 source:c:\users\o\documents\github\labprogra3\main.cpp
+1449080521 source:c:\users\o\documents\github\labprogra3\main.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -19,7 +19,7 @@
 	<cmath>
 	<math.h>
 
-1449071730 c:\users\o\documents\github\labprogra3\actor.h
+1449080521 c:\users\o\documents\github\labprogra3\actor.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -349,10 +349,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1449080214 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
+1449080521 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
 	"Playerpawn.h"
 
-1449079418 c:\users\o\documents\github\labprogra3\playerpawn.h
+1449080521 c:\users\o\documents\github\labprogra3\playerpawn.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>

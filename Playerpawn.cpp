@@ -38,16 +38,16 @@ void Playerpawn::logic()
 
 
     if(x_vel > 0)
-        x_vel -= velocity/8;
+        x_vel -= velocity/2;
     else if(x_vel < 0)
-        x_vel += velocity/8;
+        x_vel += velocity/2;
     else
         x_vel = 0;
 
     if(y_vel > 0)
-        y_vel -= velocity/8;
+        y_vel -= velocity/2;
     else if(y_vel < 0)
-        y_vel += velocity/8;
+        y_vel += velocity/2;
     else
         y_vel = 0;
 }

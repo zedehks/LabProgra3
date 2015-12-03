@@ -11,12 +11,12 @@ void Dude::logic()
     srand(time(NULL));
     swim = (rand() % 3);
 
-    if(swim == 0 && rect_actor.x < 800)
+    if(swim == 0 && rect_actor.x < this->x+350)
     {
         rect_actor.x+=3;
         //swim--;
     }
-    else if (swim == 2 && rect_actor.x > 0)
+    else if (swim == 2 && rect_actor.x > 50)
     {
         rect_actor.x-=3;
         //swim--;

@@ -34,14 +34,15 @@ void Actor::draw()
 void Actor::logic()
 {
 
-    rect_actor.w = 128 + (12*cos(++pos));
-    rect_actor.h = 121 + (12*sin(pos));
+    rect_actor.w = 128 + (64*cos(pos));
+    rect_actor.h = 121 + (64*sin(pos));
 
     rect_actor.y  = 32 +  (90*cos( pos)) / 3;
     rect_actor.x  = 200  +  (90*sin( pos)) / 3;
    /* rect_actor.h += 10;
     rect_actor.x -= 2;
     rect_actor.y -= 2;*/
+    pos+=.1;
 }
 Actor::~Actor()
 {

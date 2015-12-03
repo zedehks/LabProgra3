@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1449100400 source:c:\users\o\documents\github\labprogra3\main.cpp
+1449122773 source:c:\users\o\documents\github\labprogra3\main.cpp
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
@@ -9,7 +10,7 @@
 	"Actor.h"
 	"Playerpawn.h"
 
-1449080578 source:c:\users\o\documents\github\labprogra3\actor.cpp
+1449121956 source:c:\users\o\documents\github\labprogra3\actor.cpp
 	"Actor.h"
 	<SDL.h>
 	<SDL_image.h>
@@ -19,7 +20,7 @@
 	<cmath>
 	<math.h>
 
-1449080521 c:\users\o\documents\github\labprogra3\actor.h
+1449121956 c:\users\o\documents\github\labprogra3\actor.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -349,14 +350,23 @@
 	"begin_code.h"
 	"close_code.h"
 
-1449100502 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
+1449121956 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
 	"Playerpawn.h"
 
-1449100653 c:\users\o\documents\github\labprogra3\playerpawn.h
+1449121956 c:\users\o\documents\github\labprogra3\playerpawn.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
 	"Actor.h"
+
+1376152794 c:\sdl2\sdl2_mixer-2.0.0\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
 

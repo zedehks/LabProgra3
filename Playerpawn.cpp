@@ -33,6 +33,10 @@ void Playerpawn::logic()
         if(y_vel < 10)
             y_vel+=velocity;
     }
+    if(currentKeyStates[SDL_SCANCODE_K])
+    {
+        this->hp--;
+    }
     rect_actor.x+= x_vel;
     rect_actor.y+= y_vel;
 

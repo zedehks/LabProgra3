@@ -34,12 +34,14 @@
 			<Add directory="C:/SDL2/i686-w64-mingw32/include/SDL2" />
 			<Add directory="C:/SDL2/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
 			<Add directory="C:/SDL2/SDL2_mixer-2.0.0" />
+			<Add directory="C:/SDL2/SDL2_ttf-2.0.12/i686-w64-mingw32/include/SDL2" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer" />
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf" />
 			<Add directory="C:/SDL2/i686-w64-mingw32/lib" />
 			<Add directory="C:/SDL2/SDL2_image-2.0.0/i686-w64-mingw32/lib" />
 			<Add directory="C:/SDL2/SDL2_mixer-2.0.0" />
+			<Add directory="C:/SDL2/SDL2_ttf-2.0.12/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />

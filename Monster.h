@@ -20,6 +20,7 @@ class Monster : public Actor
             SDL_QueryTexture(skin, NULL, NULL, &w, &h);
             this->rect_actor.w = w; this->rect_actor.h = h;
         }
+
         virtual ~Monster();
         void logic();
     protected:

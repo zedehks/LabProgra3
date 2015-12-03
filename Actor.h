@@ -13,10 +13,10 @@ class Actor
         SDL_Rect rect_actor;
         SDL_Renderer* renderer;
         double pos;
-
-        Actor(SDL_Renderer* r,char tipo, int x, int y);
+        int x,y;
+        Actor(SDL_Renderer* r, int x, int y);
         void draw();
-        void logic();
+        virtual void logic(){}
 
         virtual ~Actor();
 

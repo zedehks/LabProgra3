@@ -41,6 +41,12 @@
 		</Linker>
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />
+		<Unit filename="Blazkowicz.cpp" />
+		<Unit filename="Blazkowicz.h" />
+		<Unit filename="Dude.cpp" />
+		<Unit filename="Dude.h" />
+		<Unit filename="Monster.cpp" />
+		<Unit filename="Monster.h" />
 		<Unit filename="Playerpawn.cpp" />
 		<Unit filename="Playerpawn.h" />
 		<Unit filename="main.cpp" />

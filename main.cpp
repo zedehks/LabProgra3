@@ -9,6 +9,11 @@
 #include "Actor.h"
 #include "Playerpawn.h"
 
+#include "Monster.h"
+#include "Blazkowicz.h"
+#include "Dude.h"
+
+
 SDL_Window* window;
 SDL_Renderer* renderer;
 SDL_Event Event;
@@ -28,7 +33,7 @@ int main( int argc, char* args[] )
         return 10;
     }
     //Creates a SDL Window
-    if((window = SDL_CreateWindow("Mwee~", 100, 100, 500/*WIDTH*/, 250/*HEIGHT*/, SDL_WINDOW_RESIZABLE | SDL_RENDERER_PRESENTVSYNC)) == NULL)
+    if((window = SDL_CreateWindow("Mwee~", 100, 100, 800/*WIDTH*/, 500/*HEIGHT*/, SDL_RENDERER_PRESENTVSYNC)) == NULL)
     {
         return 20;
     }
@@ -42,16 +47,22 @@ int main( int argc, char* args[] )
 
     //Init textures
     int w=0,h=0;
-    background = IMG_LoadTexture(renderer,"fondo.png");
+    background = IMG_LoadTexture(renderer,"beach.jpg");
     SDL_QueryTexture(background, NULL, NULL, &w, &h);
     rect_background.x = 0; rect_background.y = 0; rect_background.w = w; rect_background.h = h;
 
-    Actor* chaika = new Actor(renderer,'c',200,32);
+    Blazkowicz *bj = new Blazkowicz(renderer,300,200);
+    Monster* chaika = new Monster(renderer,'c',500,200);
+    Dude* bro = new Dude(renderer,100,400);
+
+
     Playerpawn* player = new Playerpawn(renderer);
 
     list<Actor*>actors;
 
     actors.push_back(chaika);
+    actors.push_back(bj);
+    actors.push_back(bro);
 
 
     //int frame = 0;
@@ -71,9 +82,8 @@ int main( int argc, char* args[] )
             {
                 switch(Event.key.keysym.sym)
                 {
-                case SDLK_d:
-                    chaika->rect_actor.x++;
-                    break;
+                case SDLK_ESCAPE:
+                    goto fin;
                 }
             }
         }
@@ -101,10 +111,12 @@ int main( int argc, char* args[] )
         printf("\n%f",fps);
         printf("\nx speed: %f",player->x_vel);
         printf("\ny speed: %f",player->y_vel);
+        printf("\ndude speed: %d",bro->swim);
 
     }
 
-    free(chaika);
+    fin:
+    free(player);
     for(list<Actor*>::iterator e = actors.begin();e!=actors.end();e++)
     {
         free(*e);

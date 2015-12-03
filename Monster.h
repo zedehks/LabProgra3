@@ -1,5 +1,5 @@
-#ifndef PLAYERPAWN_H
-#define PLAYERPAWN_H
+#ifndef MONSTER_H
+#define MONSTER_H
 
 #include<SDL.h>
 #include<SDL_image.h>
@@ -9,21 +9,21 @@
 #include "Actor.h"
 
 
-class Playerpawn : public Actor
+class Monster : public Actor
 {
     public:
-        Playerpawn(SDL_Renderer* r) : Actor(r, 0, 0)
+        Monster(SDL_Renderer* r, char tipo, int x, int y) : Actor(r, x, y)
         {
             int w= 0,h=0;
-            this->skin = IMG_LoadTexture(r, "personaje.png");
+
+            this->skin = IMG_LoadTexture(r, "chaika.png");
             SDL_QueryTexture(skin, NULL, NULL, &w, &h);
             this->rect_actor.w = w; this->rect_actor.h = h;
         }
+        virtual ~Monster();
         void logic();
-        double velocity = 2.5, x_vel = 0, y_vel = 0,friction = (velocity/2);
-        virtual ~Playerpawn();
     protected:
     private:
 };
 
-#endif // PLAYERPAWN_H
+#endif // MONSTER_H

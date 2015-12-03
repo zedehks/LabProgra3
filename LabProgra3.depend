@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1449100400 source:c:\users\o\documents\github\labprogra3\main.cpp
+1449121201 source:c:\users\o\documents\github\labprogra3\main.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -8,8 +8,11 @@
 	<list>
 	"Actor.h"
 	"Playerpawn.h"
+	"Monster.h"
+	"Blazkowicz.h"
+	"Dude.h"
 
-1449080578 source:c:\users\o\documents\github\labprogra3\actor.cpp
+1449120314 source:c:\users\o\documents\github\labprogra3\actor.cpp
 	"Actor.h"
 	<SDL.h>
 	<SDL_image.h>
@@ -19,7 +22,7 @@
 	<cmath>
 	<math.h>
 
-1449080521 c:\users\o\documents\github\labprogra3\actor.h
+1449120314 c:\users\o\documents\github\labprogra3\actor.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -352,11 +355,40 @@
 1449100502 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
 	"Playerpawn.h"
 
-1449100653 c:\users\o\documents\github\labprogra3\playerpawn.h
+1449117448 c:\users\o\documents\github\labprogra3\playerpawn.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
+	"Actor.h"
+
+1449120621 source:c:\users\o\documents\github\labprogra3\monster.cpp
+	"Monster.h"
+	<cmath>
+	<math.h>
+
+1449120314 c:\users\o\documents\github\labprogra3\monster.h
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	"Actor.h"
+
+1449121653 source:c:\users\o\documents\github\labprogra3\blazkowicz.cpp
+	"Blazkowicz.h"
+	<cmath>
+	<math.h>
+
+1449120515 c:\users\o\documents\github\labprogra3\blazkowicz.h
+	"Actor.h"
+
+1449121493 source:c:\users\o\documents\github\labprogra3\dude.cpp
+	"Dude.h"
+	<cmath>
+	<time.h>
+
+1449121517 c:\users\o\documents\github\labprogra3\dude.h
 	"Actor.h"
 

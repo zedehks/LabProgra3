@@ -27,10 +27,17 @@ void Actor::draw()
 /*void Actor::logic()
 {
 
+<<<<<<< HEAD
+=======
+    rect_actor.w = 128 + (64*cos(pos));
+    rect_actor.h = 121 + (64*sin(pos));
+>>>>>>> refs/remotes/origin/Tarea2Backup
 
     rect_actor.x -= 2;
+<<<<<<< HEAD
     rect_actor.y -= 2;
 }*/
+
 Actor::~Actor()
 {
     //dtor

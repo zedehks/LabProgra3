@@ -1,6 +1,7 @@
 
 #include<SDL.h>
 #include<SDL_image.h>
+#include<SDL_mixer.h>
 #include<iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +20,7 @@ SDL_Renderer* renderer;
 SDL_Event Event;
 SDL_Texture *background;
 SDL_Rect rect_background;
+Mix_Music *musik = NULL;
 
 const int SCREEN_FPS = 60;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
@@ -64,6 +66,13 @@ int main( int argc, char* args[] )
     actors.push_back(bj);
     actors.push_back(bro);
 
+    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        cout << "SDL_Mixer could not initialize! SDL_Mixer Error: " << Mix_GetError();
+    }
+
+    musik = Mix_LoadMUS("untitled.wav");
+    Mix_PlayMusic(musik,-1);
 
     //int frame = 0;
     int fLength = 0;
@@ -107,16 +116,13 @@ int main( int argc, char* args[] )
         }
 
         double fps = 1000.0 / (double)SCREEN_TICKS_PER_FRAME-(double)(fLength - currentTime);
-        system("cls");
-        printf("\n%f",fps);
-        printf("\nx speed: %f",player->x_vel);
-        printf("\ny speed: %f",player->y_vel);
-        printf("\ndude speed: %d",bro->swim);
 
     }
-
     fin:
-    free(player);
+    free(chaika);
+    Mix_FreeMusic( musik );
+    musik = NULL;
+
     for(list<Actor*>::iterator e = actors.begin();e!=actors.end();e++)
     {
         free(*e);

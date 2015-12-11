@@ -8,6 +8,11 @@
 #include <stdlib.h>
 #include <list>
 
+#include <cmath>
+#include <time.h>
+
+
+
 #include <sstream>
 #include <string.h>
 
@@ -27,6 +32,7 @@ SDL_Rect rect_background;
 Mix_Music *musik = NULL;
 
 TTF_Font *typeface;
+SDL_Color schwarz = {255,255,255};
 SDL_Texture* tTexture;
 SDL_Surface* tSurf;
 SDL_Rect tRect;
@@ -34,14 +40,17 @@ SDL_Rect tRect;
 const int SCREEN_FPS = 60;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
 
+
 using namespace std;
 
 void hud_init(Playerpawn *player)
 {
+    SDL_DestroyTexture(tTexture);
+    SDL_FreeSurface(tSurf);
    //Font by: Adam Moore  http://laemeur.sdf.org/fonts/
    typeface = TTF_OpenFont("MorePerfectDOSVGA.ttf", 32 );
 
-    SDL_Color schwarz = {255,255,255};
+
 
     int health = player->getHP();
 
@@ -62,6 +71,28 @@ void hud_init(Playerpawn *player)
 
 }
 
+void hud_redraw(Playerpawn *player)
+{
+    SDL_DestroyTexture(tTexture);
+    SDL_FreeSurface(tSurf);
+
+    int health = player->getHP();
+
+    stringstream strs;
+      strs << health;
+      string temp_str = strs.str();
+      char* hp = (char*) temp_str.c_str();
+
+    tSurf = TTF_RenderText_Solid(typeface,hp,schwarz);
+    if( tSurf == NULL ) { printf( "Unable to render text surface!\n SDL_ttf Error: %s\n", TTF_GetError() ); }
+
+   tTexture = SDL_CreateTextureFromSurface(renderer,tSurf);
+    if( tTexture == NULL ) { printf( "Unable to create texture from rendered text! \nSDL Error: %s\n", SDL_GetError() ); }
+
+   tRect.x = 0;tRect.y = 0;
+   SDL_QueryTexture(tTexture,NULL,NULL,&tRect.w,&tRect.h);
+
+}
 int main( int argc, char* args[] )
 {
     //Init SDL
@@ -70,6 +101,7 @@ int main( int argc, char* args[] )
     {
         return 10;
     }
+    //srand(time(NULL));
     //Creates a SDL Window
     if((window = SDL_CreateWindow("Mwee~", 100, 100, 800/*WIDTH*/, 500/*HEIGHT*/, SDL_RENDERER_PRESENTVSYNC)) == NULL)
     {
@@ -152,7 +184,7 @@ int main( int argc, char* args[] )
             (*e)->draw();
         }
 
-        hud_init(player);
+        hud_redraw(player);
         SDL_RenderCopy(renderer, tTexture, NULL, &tRect);
         SDL_RenderPresent(renderer);
 

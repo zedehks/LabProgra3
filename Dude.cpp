@@ -9,6 +9,7 @@ Dude::~Dude()
 void Dude::logic()
 {
     srand(time(NULL));
+
     swim = (rand() % 3);
 
     if(swim == 0 && rect_actor.x < this->x+350)

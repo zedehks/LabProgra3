@@ -11,6 +11,7 @@ class Dude : public Actor
         bool backwards;
         Dude(SDL_Renderer*r,int x, int y) : Actor(r,x,y)
         {
+
             int w= 0,h=0;
             this->swim = 0;
             this->backwards = false;

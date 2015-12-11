@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1449852768 source:c:\users\o\documents\github\labprogra3\main.cpp
+1449859297 source:c:\users\o\documents\github\labprogra3\main.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -18,7 +18,7 @@
 	"Blazkowicz.h"
 	"Dude.h"
 
-1449851756 source:c:\users\o\documents\github\labprogra3\actor.cpp
+1449856916 source:c:\users\o\documents\github\labprogra3\actor.cpp
 	"Actor.h"
 	<SDL.h>
 	<SDL_image.h>
@@ -28,7 +28,7 @@
 	<cmath>
 	<math.h>
 
-1449851756 c:\users\o\documents\github\labprogra3\actor.h
+1449855931 c:\users\o\documents\github\labprogra3\actor.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -358,16 +358,17 @@
 	"begin_code.h"
 	"close_code.h"
 
-1449851756 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
+1449859287 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
 	"Playerpawn.h"
 
-1449851756 c:\users\o\documents\github\labprogra3\playerpawn.h
+1449859287 c:\users\o\documents\github\labprogra3\playerpawn.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	<stdio.h>
 	<stdlib.h>
 	"Actor.h"
+	<SDL_mixer.h>
 
 1449851756 source:c:\users\o\documents\github\labprogra3\monster.cpp
 	"Monster.h"

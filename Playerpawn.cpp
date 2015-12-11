@@ -9,9 +9,11 @@ Playerpawn::~Playerpawn()
 {
     //dtor
 }
+void Playerpawn::logic(){}
 
-void Playerpawn::logic()
+bool Playerpawn::logica(Mix_Chunk* pded)
 {
+    bool attack = false;
     const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     if( currentKeyStates[ SDL_SCANCODE_RIGHT ] )
     {
@@ -36,6 +38,12 @@ void Playerpawn::logic()
     if(currentKeyStates[SDL_SCANCODE_K])
     {
         this->hp--;
+        if(hp==0)
+            Mix_PlayChannel(-1, pded, 0);
+    }
+    if(currentKeyStates[SDL_SCANCODE_SPACE])
+    {
+        attack = true;
     }
     rect_actor.x+= x_vel;
     rect_actor.y+= y_vel;
@@ -51,5 +59,6 @@ void Playerpawn::logic()
         y_vel -= friction;
      if(y_vel < 0.0)
         y_vel += friction;
+    return attack;
 
 }

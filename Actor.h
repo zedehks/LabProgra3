@@ -12,6 +12,7 @@ class Actor
         SDL_Texture *skin;
         SDL_Rect rect_actor;
         SDL_Renderer* renderer;
+        bool isDead;
         double pos;
         int x,y;
         Actor(SDL_Renderer* r, int x, int y);

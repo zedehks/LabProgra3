@@ -10,6 +10,7 @@
 Actor::Actor(SDL_Renderer* r, int x, int y)
 {
     int w = 0,h=0,pos=0.0;
+    isDead = false;
     this->renderer = r;
     this->x=x;
     this->y=y;

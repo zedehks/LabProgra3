@@ -31,12 +31,19 @@ SDL_Texture *background;
 SDL_Rect rect_background;
 Mix_Music *musik = NULL;
 Mix_Chunk *bump;
+Mix_Chunk *ded;
+Mix_Chunk *pded;
 
 TTF_Font *typeface;
 SDL_Color schwarz = {255,255,255};
 SDL_Texture* tTexture;
 SDL_Surface* tSurf;
 SDL_Rect tRect;
+
+SDL_Texture *kTexture;
+SDL_Surface *kSurf;
+SDL_Rect kRect;
+
 
 const int SCREEN_FPS = 60;
 const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
@@ -48,17 +55,26 @@ void hud_init(Playerpawn *player)
 {
     SDL_DestroyTexture(tTexture);
     SDL_FreeSurface(tSurf);
+     SDL_DestroyTexture(kTexture);
+    SDL_FreeSurface(kSurf);
    //Font by: Adam Moore  http://laemeur.sdf.org/fonts/
    typeface = TTF_OpenFont("MorePerfectDOSVGA.ttf", 32 );
 
 
 
     int health = player->getHP();
+    int kills = player->killCount;
 
     stringstream strs;
       strs << health;
       string temp_str = strs.str();
       char* hp = (char*) temp_str.c_str();
+
+      stringstream butt;
+      butt << kills;
+
+      temp_str = butt.str();
+       char* killc = (char*) temp_str.c_str();
 
     tSurf = TTF_RenderText_Solid(typeface,hp,schwarz);
     if( tSurf == NULL ) { printf( "Unable to render text surface!\n SDL_ttf Error: %s\n", TTF_GetError() ); }
@@ -68,7 +84,12 @@ void hud_init(Playerpawn *player)
 
    tRect.x = 0;tRect.y = 0;
 
+   kSurf = TTF_RenderText_Solid(typeface,killc,schwarz);
+   kTexture = SDL_CreateTextureFromSurface(renderer,kSurf);
+   kRect.x =0;kRect.y = 400;
+
     SDL_QueryTexture(tTexture,NULL,NULL,&tRect.w,&tRect.h);
+     SDL_QueryTexture(kTexture,NULL,NULL,&kRect.w,&kRect.h);
 
 }
 
@@ -76,13 +97,21 @@ void hud_redraw(Playerpawn *player)
 {
     SDL_DestroyTexture(tTexture);
     SDL_FreeSurface(tSurf);
+    SDL_DestroyTexture(kTexture);
+    SDL_FreeSurface(kSurf);
 
     int health = player->getHP();
+    int kills = player->killCount;
 
     stringstream strs;
       strs << health;
       string temp_str = strs.str();
       char* hp = (char*) temp_str.c_str();
+
+     stringstream butt;
+      butt << kills;
+      temp_str = butt.str();
+      char* killc = (char*) temp_str.c_str();
 
     tSurf = TTF_RenderText_Solid(typeface,hp,schwarz);
     if( tSurf == NULL ) { printf( "Unable to render text surface!\n SDL_ttf Error: %s\n", TTF_GetError() ); }
@@ -92,6 +121,11 @@ void hud_redraw(Playerpawn *player)
 
    tRect.x = 0;tRect.y = 0;
    SDL_QueryTexture(tTexture,NULL,NULL,&tRect.w,&tRect.h);
+
+   kSurf = TTF_RenderText_Solid(typeface,killc,schwarz);
+   kTexture = SDL_CreateTextureFromSurface(renderer,kSurf);
+   kRect.x =0;kRect.y = 400;
+    SDL_QueryTexture(kTexture,NULL,NULL,&kRect.w,&kRect.h);
 
 }
 int main( int argc, char* args[] )
@@ -122,6 +156,12 @@ int main( int argc, char* args[] )
     SDL_QueryTexture(background, NULL, NULL, &w, &h);
     rect_background.x = 0; rect_background.y = 0; rect_background.w = w; rect_background.h = h;
 
+    SDL_Texture* satan = IMG_LoadTexture(renderer,"hail.png");
+    SDL_Rect attackr;
+    attackr.x = 0;attackr.y=0;attackr.w=128;attackr.y=128;
+    SDL_QueryTexture(satan,NULL,NULL,&attackr.w,&attackr.h);
+
+
     //init actors
     Blazkowicz *bj = new Blazkowicz(renderer,300,200);
     Monster* chaika = new Monster(renderer,'c',500,200);
@@ -145,12 +185,15 @@ int main( int argc, char* args[] )
     musik = Mix_LoadMUS("untitled.wav");
     Mix_PlayMusic(musik,-1);
     bump = Mix_LoadWAV("boop.wav");
+    ded = Mix_LoadWAV("ded.wav");
+    pded = Mix_LoadWAV("die.wav");
 
     //hud init
     hud_init(player);
 
     int fLength = 0;
     int currentTime = 0;
+    bool attack = false;
     //Main Loop
     while(true)
     {
@@ -173,32 +216,56 @@ int main( int argc, char* args[] )
 
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, background, NULL, &rect_background);
+        if(attack)
+        {
+            attackr.x = player->rect_actor.x-48;
+            attackr.y = player->rect_actor.y-48;
+            SDL_RenderCopy(renderer,satan,NULL,&attackr);
+        }
+
 
 
         if(player->getHP() > 0)
         {
-            player->logic();
+            attack = player->logica(pded);
             player->draw();
         }
         for(list<Actor*>::iterator e = actors.begin();e!=actors.end();e++)
         {
-            (*e)->logic();
-            if( player->rect_actor.x >= (*e)->rect_actor.x && player->rect_actor.x+16 < (*e)->rect_actor.x+(*e)->rect_actor.w )
+            if(!(*e)->isDead)
             {
-                 if(player->rect_actor.y >= (*e)->rect_actor.y && player->rect_actor.y+16 < (*e)->rect_actor.y+(*e)->rect_actor.h )
-                 {
-                    Mix_PlayChannel(-1, bump, 0);
-                    player->rect_actor.x += rand() % 33 - 16;
-                    player->rect_actor.y += rand() % 33 -16;
-                 }
+                (*e)->logic();
+                if(attack)
+                {
+                    if( attackr.x >= (*e)->rect_actor.x && attackr.x < (*e)->rect_actor.x+(*e)->rect_actor.w )
+                    {
+                         if(attackr.y >= (*e)->rect_actor.y && attackr.y < (*e)->rect_actor.y+(*e)->rect_actor.h )
+                         {
+                            Mix_PlayChannel(-1, ded, 0);
+                            (*e)->isDead = true;
+                            player->addKill();
+                         }
+                    }
+                }
+                if( player->rect_actor.x >= (*e)->rect_actor.x && player->rect_actor.x+16 < (*e)->rect_actor.x+(*e)->rect_actor.w )
+                {
+                     if(player->rect_actor.y >= (*e)->rect_actor.y && player->rect_actor.y+16 < (*e)->rect_actor.y+(*e)->rect_actor.h )
+                     {
+                        Mix_PlayChannel(-1, bump, 0);
+                        player->rect_actor.x += rand() % 33 - 16;
+                        player->rect_actor.y += rand() % 33 -16;
+                     }
+                }
+                (*e)->draw();
             }
 
 
-            (*e)->draw();
         }
 
         hud_redraw(player);
+
         SDL_RenderCopy(renderer, tTexture, NULL, &tRect);
+        SDL_RenderCopy(renderer,kTexture,NULL, &kRect);
         SDL_RenderPresent(renderer);
 
         fLength = SDL_GetTicks();

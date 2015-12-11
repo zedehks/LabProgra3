@@ -10,7 +10,7 @@ class Blazkowicz : public Actor
         bool backwards;
         Blazkowicz(SDL_Renderer*r,int x, int y) : Actor(r,x,y)
         {
-            int w= 0,h=0;
+            int w= 32,h=32;
 
             this->skin = IMG_LoadTexture(r, "BJ_STAND.png");
             SDL_QueryTexture(skin, NULL, NULL, &w, &h);

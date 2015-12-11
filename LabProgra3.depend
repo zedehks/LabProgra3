@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1449851566 source:c:\users\o\documents\github\labprogra3\main.cpp
+1449852768 source:c:\users\o\documents\github\labprogra3\main.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -18,7 +18,7 @@
 	"Blazkowicz.h"
 	"Dude.h"
 
-1449258302 source:c:\users\o\documents\github\labprogra3\actor.cpp
+1449851756 source:c:\users\o\documents\github\labprogra3\actor.cpp
 	"Actor.h"
 	<SDL.h>
 	<SDL_image.h>
@@ -28,7 +28,7 @@
 	<cmath>
 	<math.h>
 
-1449258302 c:\users\o\documents\github\labprogra3\actor.h
+1449851756 c:\users\o\documents\github\labprogra3\actor.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -358,10 +358,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1449258302 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
+1449851756 source:c:\users\o\documents\github\labprogra3\playerpawn.cpp
 	"Playerpawn.h"
 
-1449258302 c:\users\o\documents\github\labprogra3\playerpawn.h
+1449851756 c:\users\o\documents\github\labprogra3\playerpawn.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -369,12 +369,12 @@
 	<stdlib.h>
 	"Actor.h"
 
-1449258302 source:c:\users\o\documents\github\labprogra3\monster.cpp
+1449851756 source:c:\users\o\documents\github\labprogra3\monster.cpp
 	"Monster.h"
 	<cmath>
 	<math.h>
 
-1449258302 c:\users\o\documents\github\labprogra3\monster.h
+1449851756 c:\users\o\documents\github\labprogra3\monster.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -382,20 +382,20 @@
 	<stdlib.h>
 	"Actor.h"
 
-1449258302 source:c:\users\o\documents\github\labprogra3\blazkowicz.cpp
+1449851756 source:c:\users\o\documents\github\labprogra3\blazkowicz.cpp
 	"Blazkowicz.h"
 	<cmath>
 	<math.h>
 
-1449258302 c:\users\o\documents\github\labprogra3\blazkowicz.h
+1449852576 c:\users\o\documents\github\labprogra3\blazkowicz.h
 	"Actor.h"
 
-1449851579 source:c:\users\o\documents\github\labprogra3\dude.cpp
+1449851756 source:c:\users\o\documents\github\labprogra3\dude.cpp
 	"Dude.h"
 	<cmath>
 	<time.h>
 
-1449851557 c:\users\o\documents\github\labprogra3\dude.h
+1449852576 c:\users\o\documents\github\labprogra3\dude.h
 	"Actor.h"
 
 1376152794 c:\sdl2\sdl2_mixer-2.0.0\sdl_mixer.h

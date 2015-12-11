@@ -12,7 +12,7 @@ class Dude : public Actor
         Dude(SDL_Renderer*r,int x, int y) : Actor(r,x,y)
         {
 
-            int w= 0,h=0;
+            int w= 64,h=75;
             this->swim = 0;
             this->backwards = false;
             this->skin = IMG_LoadTexture(r, "ruff.png");

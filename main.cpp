@@ -30,6 +30,7 @@ SDL_Event Event;
 SDL_Texture *background;
 SDL_Rect rect_background;
 Mix_Music *musik = NULL;
+Mix_Chunk *bump;
 
 TTF_Font *typeface;
 SDL_Color schwarz = {255,255,255};
@@ -143,6 +144,7 @@ int main( int argc, char* args[] )
     //music
     musik = Mix_LoadMUS("untitled.wav");
     Mix_PlayMusic(musik,-1);
+    bump = Mix_LoadWAV("boop.wav");
 
     //hud init
     hud_init(player);
@@ -181,6 +183,17 @@ int main( int argc, char* args[] )
         for(list<Actor*>::iterator e = actors.begin();e!=actors.end();e++)
         {
             (*e)->logic();
+            if( player->rect_actor.x >= (*e)->rect_actor.x && player->rect_actor.x+16 < (*e)->rect_actor.x+(*e)->rect_actor.w )
+            {
+                 if(player->rect_actor.y >= (*e)->rect_actor.y && player->rect_actor.y+16 < (*e)->rect_actor.y+(*e)->rect_actor.h )
+                 {
+                    Mix_PlayChannel(-1, bump, 0);
+                    player->rect_actor.x += rand() % 33 - 16;
+                    player->rect_actor.y += rand() % 33 -16;
+                 }
+            }
+
+
             (*e)->draw();
         }
 
